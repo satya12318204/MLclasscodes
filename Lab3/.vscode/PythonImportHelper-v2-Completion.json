@@ -1,0 +1,280 @@
+[
+    {
+        "label": "numpy",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "numpy",
+        "description": "numpy",
+        "detail": "numpy",
+        "documentation": {}
+    },
+    {
+        "label": "pandas",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pandas",
+        "description": "pandas",
+        "detail": "pandas",
+        "documentation": {}
+    },
+    {
+        "label": "train_test_split",
+        "importPath": "sklearn.model_selection",
+        "description": "sklearn.model_selection",
+        "isExtraImport": true,
+        "detail": "sklearn.model_selection",
+        "documentation": {}
+    },
+    {
+        "label": "normalize_features",
+        "kind": 2,
+        "importPath": "2",
+        "description": "2",
+        "peekOfCode": "def normalize_features(X):\n    return (X - np.mean(X, axis=0)) / np.std(X, axis=0)\n# Function to split data into train and test sets (70% train, 30% test)\ndef train_test_split(X, y, test_size=0.3):\n    indices = np.arange(X.shape[0])\n    np.random.shuffle(indices)\n    test_size = int(len(X) * test_size)\n    test_indices = indices[:test_size]\n    train_indices = indices[test_size:]\n    X_train, X_test = X[train_indices], X[test_indices]",
+        "detail": "2",
+        "documentation": {}
+    },
+    {
+        "label": "train_test_split",
+        "kind": 2,
+        "importPath": "2",
+        "description": "2",
+        "peekOfCode": "def train_test_split(X, y, test_size=0.3):\n    indices = np.arange(X.shape[0])\n    np.random.shuffle(indices)\n    test_size = int(len(X) * test_size)\n    test_indices = indices[:test_size]\n    train_indices = indices[test_size:]\n    X_train, X_test = X[train_indices], X[test_indices]\n    y_train, y_test = y[train_indices], y[test_indices]\n    return X_train, X_test, y_train, y_test\n# Function to perform Gradient Descent",
+        "detail": "2",
+        "documentation": {}
+    },
+    {
+        "label": "gradient_descent",
+        "kind": 2,
+        "importPath": "2",
+        "description": "2",
+        "peekOfCode": "def gradient_descent(X, y, learning_rate, iterations):\n    m, n = X.shape\n    theta = np.zeros(n)\n    for _ in range(iterations):\n        gradient = (1/m) * np.dot(X.T, np.dot(X, theta) - y)\n        theta -= learning_rate * gradient\n    return theta\n# Function to predict the target variable\ndef predict(X, theta):\n    return np.dot(X, theta)",
+        "detail": "2",
+        "documentation": {}
+    },
+    {
+        "label": "predict",
+        "kind": 2,
+        "importPath": "2",
+        "description": "2",
+        "peekOfCode": "def predict(X, theta):\n    return np.dot(X, theta)\n# Function to calculate Mean Squared Error\ndef mean_squared_error(y_true, y_pred):\n    return np.mean((y_true - y_pred) ** 2)\n# Function to calculate R2 Score\ndef r2_score(y_true, y_pred):\n    ss_total = np.sum((y_true - np.mean(y_true)) ** 2)\n    ss_residual = np.sum((y_true - y_pred) ** 2)\n    return 1 - (ss_residual / ss_total)",
+        "detail": "2",
+        "documentation": {}
+    },
+    {
+        "label": "mean_squared_error",
+        "kind": 2,
+        "importPath": "2",
+        "description": "2",
+        "peekOfCode": "def mean_squared_error(y_true, y_pred):\n    return np.mean((y_true - y_pred) ** 2)\n# Function to calculate R2 Score\ndef r2_score(y_true, y_pred):\n    ss_total = np.sum((y_true - np.mean(y_true)) ** 2)\n    ss_residual = np.sum((y_true - y_pred) ** 2)\n    return 1 - (ss_residual / ss_total)\n# Main function\ndef main():\n    # Load dataset using pandas",
+        "detail": "2",
+        "documentation": {}
+    },
+    {
+        "label": "r2_score",
+        "kind": 2,
+        "importPath": "2",
+        "description": "2",
+        "peekOfCode": "def r2_score(y_true, y_pred):\n    ss_total = np.sum((y_true - np.mean(y_true)) ** 2)\n    ss_residual = np.sum((y_true - y_pred) ** 2)\n    return 1 - (ss_residual / ss_total)\n# Main function\ndef main():\n    # Load dataset using pandas\n    data = pd.read_csv(\"Lab_A3_Admission_Predict_Ver1.1.csv\")\n    # Prepare features and target\n    X = data.iloc[:, 1:-1].values  # All columns except the first and last one",
+        "detail": "2",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "2",
+        "description": "2",
+        "peekOfCode": "def main():\n    # Load dataset using pandas\n    data = pd.read_csv(\"Lab_A3_Admission_Predict_Ver1.1.csv\")\n    # Prepare features and target\n    X = data.iloc[:, 1:-1].values  # All columns except the first and last one\n    y = data.iloc[:, -1].values   # Last column\n    # Normalize features\n    X = normalize_features(X)\n    # Add intercept term\n    X = np.c_[np.ones(X.shape[0]), X]  # Add a column of ones to X",
+        "detail": "2",
+        "documentation": {}
+    },
+    {
+        "label": "CustomRegression",
+        "kind": 6,
+        "importPath": "S20220010170_A3",
+        "description": "S20220010170_A3",
+        "peekOfCode": "class CustomRegression:\n    def __init__(self):\n        self.coefficients = None\n    def fit(self, X, y):\n        X_transpose = X.T\n        self.coefficients = np.linalg.inv(X_transpose @ X) @ X_transpose @ y\n    def predict(self, X):\n        if self.coefficients is None:\n            raise ValueError(\"Model has not been fitted yet.\")\n        return X @ self.coefficients",
+        "detail": "S20220010170_A3",
+        "documentation": {}
+    },
+    {
+        "label": "compute_mse",
+        "kind": 2,
+        "importPath": "S20220010170_A3",
+        "description": "S20220010170_A3",
+        "peekOfCode": "def compute_mse(true_values, predicted_values):\n    return np.mean((true_values - predicted_values) ** 2)\ndef compute_r2(true_values, predicted_values):\n    total_variance = np.sum((true_values - np.mean(true_values)) ** 2)\n    residual_variance = np.sum((true_values - predicted_values) ** 2)\n    return 1 - (residual_variance / total_variance)\ntraining_mse = compute_mse(y_train_array, train_predictions)\ntesting_mse = compute_mse(y_test_array, test_predictions)\ntraining_r2 = compute_r2(y_train_array, train_predictions)\ntesting_r2 = compute_r2(y_test_array, test_predictions)",
+        "detail": "S20220010170_A3",
+        "documentation": {}
+    },
+    {
+        "label": "compute_r2",
+        "kind": 2,
+        "importPath": "S20220010170_A3",
+        "description": "S20220010170_A3",
+        "peekOfCode": "def compute_r2(true_values, predicted_values):\n    total_variance = np.sum((true_values - np.mean(true_values)) ** 2)\n    residual_variance = np.sum((true_values - predicted_values) ** 2)\n    return 1 - (residual_variance / total_variance)\ntraining_mse = compute_mse(y_train_array, train_predictions)\ntesting_mse = compute_mse(y_test_array, test_predictions)\ntraining_r2 = compute_r2(y_train_array, train_predictions)\ntesting_r2 = compute_r2(y_test_array, test_predictions)\nprint(f\"Training Mean Squared Error: {training_mse:.4f}\")\nprint(f\"Testing Mean Squared Error: {testing_mse:.4f}\")",
+        "detail": "S20220010170_A3",
+        "documentation": {}
+    },
+    {
+        "label": "data",
+        "kind": 5,
+        "importPath": "S20220010170_A3",
+        "description": "S20220010170_A3",
+        "peekOfCode": "data = pd.read_csv('Lab_A3_Admission_Predict_Ver1.1.csv')\ndata = data.drop(columns=['Serial No.'])\nfeatures = data.drop(columns=['Chance of Admit'])\ntarget = data['Chance of Admit']\nfeatures = np.c_[np.ones(features.shape[0]), features]\nfrom sklearn.model_selection import train_test_split\nX_train, X_test, y_train, y_test = train_test_split(features, target, test_size=0.3, random_state=42)\nX_train_array = np.array(X_train)\ny_train_array = np.array(y_train)\nX_test_array = np.array(X_test)",
+        "detail": "S20220010170_A3",
+        "documentation": {}
+    },
+    {
+        "label": "data",
+        "kind": 5,
+        "importPath": "S20220010170_A3",
+        "description": "S20220010170_A3",
+        "peekOfCode": "data = data.drop(columns=['Serial No.'])\nfeatures = data.drop(columns=['Chance of Admit'])\ntarget = data['Chance of Admit']\nfeatures = np.c_[np.ones(features.shape[0]), features]\nfrom sklearn.model_selection import train_test_split\nX_train, X_test, y_train, y_test = train_test_split(features, target, test_size=0.3, random_state=42)\nX_train_array = np.array(X_train)\ny_train_array = np.array(y_train)\nX_test_array = np.array(X_test)\ny_test_array = np.array(y_test)",
+        "detail": "S20220010170_A3",
+        "documentation": {}
+    },
+    {
+        "label": "features",
+        "kind": 5,
+        "importPath": "S20220010170_A3",
+        "description": "S20220010170_A3",
+        "peekOfCode": "features = data.drop(columns=['Chance of Admit'])\ntarget = data['Chance of Admit']\nfeatures = np.c_[np.ones(features.shape[0]), features]\nfrom sklearn.model_selection import train_test_split\nX_train, X_test, y_train, y_test = train_test_split(features, target, test_size=0.3, random_state=42)\nX_train_array = np.array(X_train)\ny_train_array = np.array(y_train)\nX_test_array = np.array(X_test)\ny_test_array = np.array(y_test)\nclass CustomRegression:",
+        "detail": "S20220010170_A3",
+        "documentation": {}
+    },
+    {
+        "label": "target",
+        "kind": 5,
+        "importPath": "S20220010170_A3",
+        "description": "S20220010170_A3",
+        "peekOfCode": "target = data['Chance of Admit']\nfeatures = np.c_[np.ones(features.shape[0]), features]\nfrom sklearn.model_selection import train_test_split\nX_train, X_test, y_train, y_test = train_test_split(features, target, test_size=0.3, random_state=42)\nX_train_array = np.array(X_train)\ny_train_array = np.array(y_train)\nX_test_array = np.array(X_test)\ny_test_array = np.array(y_test)\nclass CustomRegression:\n    def __init__(self):",
+        "detail": "S20220010170_A3",
+        "documentation": {}
+    },
+    {
+        "label": "features",
+        "kind": 5,
+        "importPath": "S20220010170_A3",
+        "description": "S20220010170_A3",
+        "peekOfCode": "features = np.c_[np.ones(features.shape[0]), features]\nfrom sklearn.model_selection import train_test_split\nX_train, X_test, y_train, y_test = train_test_split(features, target, test_size=0.3, random_state=42)\nX_train_array = np.array(X_train)\ny_train_array = np.array(y_train)\nX_test_array = np.array(X_test)\ny_test_array = np.array(y_test)\nclass CustomRegression:\n    def __init__(self):\n        self.coefficients = None",
+        "detail": "S20220010170_A3",
+        "documentation": {}
+    },
+    {
+        "label": "X_train_array",
+        "kind": 5,
+        "importPath": "S20220010170_A3",
+        "description": "S20220010170_A3",
+        "peekOfCode": "X_train_array = np.array(X_train)\ny_train_array = np.array(y_train)\nX_test_array = np.array(X_test)\ny_test_array = np.array(y_test)\nclass CustomRegression:\n    def __init__(self):\n        self.coefficients = None\n    def fit(self, X, y):\n        X_transpose = X.T\n        self.coefficients = np.linalg.inv(X_transpose @ X) @ X_transpose @ y",
+        "detail": "S20220010170_A3",
+        "documentation": {}
+    },
+    {
+        "label": "y_train_array",
+        "kind": 5,
+        "importPath": "S20220010170_A3",
+        "description": "S20220010170_A3",
+        "peekOfCode": "y_train_array = np.array(y_train)\nX_test_array = np.array(X_test)\ny_test_array = np.array(y_test)\nclass CustomRegression:\n    def __init__(self):\n        self.coefficients = None\n    def fit(self, X, y):\n        X_transpose = X.T\n        self.coefficients = np.linalg.inv(X_transpose @ X) @ X_transpose @ y\n    def predict(self, X):",
+        "detail": "S20220010170_A3",
+        "documentation": {}
+    },
+    {
+        "label": "X_test_array",
+        "kind": 5,
+        "importPath": "S20220010170_A3",
+        "description": "S20220010170_A3",
+        "peekOfCode": "X_test_array = np.array(X_test)\ny_test_array = np.array(y_test)\nclass CustomRegression:\n    def __init__(self):\n        self.coefficients = None\n    def fit(self, X, y):\n        X_transpose = X.T\n        self.coefficients = np.linalg.inv(X_transpose @ X) @ X_transpose @ y\n    def predict(self, X):\n        if self.coefficients is None:",
+        "detail": "S20220010170_A3",
+        "documentation": {}
+    },
+    {
+        "label": "y_test_array",
+        "kind": 5,
+        "importPath": "S20220010170_A3",
+        "description": "S20220010170_A3",
+        "peekOfCode": "y_test_array = np.array(y_test)\nclass CustomRegression:\n    def __init__(self):\n        self.coefficients = None\n    def fit(self, X, y):\n        X_transpose = X.T\n        self.coefficients = np.linalg.inv(X_transpose @ X) @ X_transpose @ y\n    def predict(self, X):\n        if self.coefficients is None:\n            raise ValueError(\"Model has not been fitted yet.\")",
+        "detail": "S20220010170_A3",
+        "documentation": {}
+    },
+    {
+        "label": "model",
+        "kind": 5,
+        "importPath": "S20220010170_A3",
+        "description": "S20220010170_A3",
+        "peekOfCode": "model = CustomRegression()\nmodel.fit(X_train_array, y_train_array)\ntrain_predictions = model.predict(X_train_array)\ntest_predictions = model.predict(X_test_array)\ndef compute_mse(true_values, predicted_values):\n    return np.mean((true_values - predicted_values) ** 2)\ndef compute_r2(true_values, predicted_values):\n    total_variance = np.sum((true_values - np.mean(true_values)) ** 2)\n    residual_variance = np.sum((true_values - predicted_values) ** 2)\n    return 1 - (residual_variance / total_variance)",
+        "detail": "S20220010170_A3",
+        "documentation": {}
+    },
+    {
+        "label": "train_predictions",
+        "kind": 5,
+        "importPath": "S20220010170_A3",
+        "description": "S20220010170_A3",
+        "peekOfCode": "train_predictions = model.predict(X_train_array)\ntest_predictions = model.predict(X_test_array)\ndef compute_mse(true_values, predicted_values):\n    return np.mean((true_values - predicted_values) ** 2)\ndef compute_r2(true_values, predicted_values):\n    total_variance = np.sum((true_values - np.mean(true_values)) ** 2)\n    residual_variance = np.sum((true_values - predicted_values) ** 2)\n    return 1 - (residual_variance / total_variance)\ntraining_mse = compute_mse(y_train_array, train_predictions)\ntesting_mse = compute_mse(y_test_array, test_predictions)",
+        "detail": "S20220010170_A3",
+        "documentation": {}
+    },
+    {
+        "label": "test_predictions",
+        "kind": 5,
+        "importPath": "S20220010170_A3",
+        "description": "S20220010170_A3",
+        "peekOfCode": "test_predictions = model.predict(X_test_array)\ndef compute_mse(true_values, predicted_values):\n    return np.mean((true_values - predicted_values) ** 2)\ndef compute_r2(true_values, predicted_values):\n    total_variance = np.sum((true_values - np.mean(true_values)) ** 2)\n    residual_variance = np.sum((true_values - predicted_values) ** 2)\n    return 1 - (residual_variance / total_variance)\ntraining_mse = compute_mse(y_train_array, train_predictions)\ntesting_mse = compute_mse(y_test_array, test_predictions)\ntraining_r2 = compute_r2(y_train_array, train_predictions)",
+        "detail": "S20220010170_A3",
+        "documentation": {}
+    },
+    {
+        "label": "training_mse",
+        "kind": 5,
+        "importPath": "S20220010170_A3",
+        "description": "S20220010170_A3",
+        "peekOfCode": "training_mse = compute_mse(y_train_array, train_predictions)\ntesting_mse = compute_mse(y_test_array, test_predictions)\ntraining_r2 = compute_r2(y_train_array, train_predictions)\ntesting_r2 = compute_r2(y_test_array, test_predictions)\nprint(f\"Training Mean Squared Error: {training_mse:.4f}\")\nprint(f\"Testing Mean Squared Error: {testing_mse:.4f}\")\nprint(f\"Training R² Score: {training_r2:.4f}\")\nprint(f\"Testing R² Score: {testing_r2:.4f}\")\ncandidate_data = np.array([1, 320, 110, 3, 4.5, 4.0, 9.0, 1])  \npredicted_admission_chance = model.predict(candidate_data.reshape(1, -1))",
+        "detail": "S20220010170_A3",
+        "documentation": {}
+    },
+    {
+        "label": "testing_mse",
+        "kind": 5,
+        "importPath": "S20220010170_A3",
+        "description": "S20220010170_A3",
+        "peekOfCode": "testing_mse = compute_mse(y_test_array, test_predictions)\ntraining_r2 = compute_r2(y_train_array, train_predictions)\ntesting_r2 = compute_r2(y_test_array, test_predictions)\nprint(f\"Training Mean Squared Error: {training_mse:.4f}\")\nprint(f\"Testing Mean Squared Error: {testing_mse:.4f}\")\nprint(f\"Training R² Score: {training_r2:.4f}\")\nprint(f\"Testing R² Score: {testing_r2:.4f}\")\ncandidate_data = np.array([1, 320, 110, 3, 4.5, 4.0, 9.0, 1])  \npredicted_admission_chance = model.predict(candidate_data.reshape(1, -1))\nprint(f\"Predicted Admission Chance for New Candidate: {predicted_admission_chance[0]:.4f}\")",
+        "detail": "S20220010170_A3",
+        "documentation": {}
+    },
+    {
+        "label": "training_r2",
+        "kind": 5,
+        "importPath": "S20220010170_A3",
+        "description": "S20220010170_A3",
+        "peekOfCode": "training_r2 = compute_r2(y_train_array, train_predictions)\ntesting_r2 = compute_r2(y_test_array, test_predictions)\nprint(f\"Training Mean Squared Error: {training_mse:.4f}\")\nprint(f\"Testing Mean Squared Error: {testing_mse:.4f}\")\nprint(f\"Training R² Score: {training_r2:.4f}\")\nprint(f\"Testing R² Score: {testing_r2:.4f}\")\ncandidate_data = np.array([1, 320, 110, 3, 4.5, 4.0, 9.0, 1])  \npredicted_admission_chance = model.predict(candidate_data.reshape(1, -1))\nprint(f\"Predicted Admission Chance for New Candidate: {predicted_admission_chance[0]:.4f}\")",
+        "detail": "S20220010170_A3",
+        "documentation": {}
+    },
+    {
+        "label": "testing_r2",
+        "kind": 5,
+        "importPath": "S20220010170_A3",
+        "description": "S20220010170_A3",
+        "peekOfCode": "testing_r2 = compute_r2(y_test_array, test_predictions)\nprint(f\"Training Mean Squared Error: {training_mse:.4f}\")\nprint(f\"Testing Mean Squared Error: {testing_mse:.4f}\")\nprint(f\"Training R² Score: {training_r2:.4f}\")\nprint(f\"Testing R² Score: {testing_r2:.4f}\")\ncandidate_data = np.array([1, 320, 110, 3, 4.5, 4.0, 9.0, 1])  \npredicted_admission_chance = model.predict(candidate_data.reshape(1, -1))\nprint(f\"Predicted Admission Chance for New Candidate: {predicted_admission_chance[0]:.4f}\")",
+        "detail": "S20220010170_A3",
+        "documentation": {}
+    },
+    {
+        "label": "candidate_data",
+        "kind": 5,
+        "importPath": "S20220010170_A3",
+        "description": "S20220010170_A3",
+        "peekOfCode": "candidate_data = np.array([1, 320, 110, 3, 4.5, 4.0, 9.0, 1])  \npredicted_admission_chance = model.predict(candidate_data.reshape(1, -1))\nprint(f\"Predicted Admission Chance for New Candidate: {predicted_admission_chance[0]:.4f}\")",
+        "detail": "S20220010170_A3",
+        "documentation": {}
+    },
+    {
+        "label": "predicted_admission_chance",
+        "kind": 5,
+        "importPath": "S20220010170_A3",
+        "description": "S20220010170_A3",
+        "peekOfCode": "predicted_admission_chance = model.predict(candidate_data.reshape(1, -1))\nprint(f\"Predicted Admission Chance for New Candidate: {predicted_admission_chance[0]:.4f}\")",
+        "detail": "S20220010170_A3",
+        "documentation": {}
+    }
+]
